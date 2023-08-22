@@ -1,1 +1,1 @@
-# Learning Spring boot vs Spring MVC
+# Learning Spring boot with example
