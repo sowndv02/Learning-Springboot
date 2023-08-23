@@ -4,8 +4,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.multipart.MultipartFile;
 
 import sowndv02.learning.hello.services.CookieService;
 import sowndv02.learning.hello.services.ParamService;
@@ -52,5 +54,28 @@ public class AccountController {
         }
 
         return "accounts/login";
+    }
+
+    @GetMapping("/register")
+    public String register1() {
+        return "accounts/register";
+    }
+
+    @PostMapping("/register")
+    public String register2(@ModelAttribute("img") MultipartFile img, Model model) {
+
+        String username = paramService.getString("username", "");
+        String password = paramService.getString("password", "");
+
+        try {
+            paramService.saveFile(img, "/images"); // Khai báo chi tiết đường dẫn
+            model.addAttribute("message", "save!");
+        } catch (Exception e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+            model.addAttribute("message", "Error: " + e.getMessage());
+        }
+
+        return "accounts/register";
     }
 }
