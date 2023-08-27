@@ -1,0 +1,15 @@
+<!doctype html>
+<html lang="en" xlmns="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8" />
+	<title>Document</title>
+</head>
+<body>
+	<th:block th:object="${student}">
+		<h3 th:text="*{studentId}"></h3>
+		<h3>[[*{name}]]</h3>
+		<h3 th:text="*{gender == true ? 'Male' : 'Female'}"></h3>
+		<h3 th:text="*{gpa > 9 ? 'Vjp vc' : 'Same'}"></h3>
+	</th:block>
+</body>
+</html>

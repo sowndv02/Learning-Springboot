@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en" xlmns="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8" />
+	<title>Document</title>
+</head>
+<body>
+	<table>
+		<tr>
+			<td>No</td>
+			<td>StudentId</td>
+			<td>Name</td>
+			<td>Gender</td>
+			<td>Date of birth</td>
+			<td>GPA</td>
+			<td>Grade</td>
+		</tr>
+
+		<tr th:each="item, istat : ${students}">
+			<td th:text="${istat.index + 1}"></td>
+			<td>[[${item.studentId}]]</td>
+			<td>[[${#strings.capitalizeWords( item.name )}]]</td>
+			<td>[[${item.gender == true ? 'Male' : 'Female'}]]</td>
+			<td>[[${#dates.format(item.dob, "dd/MM/yyyy")}]]</td>
+			<td>[[${#numbers.formatDecimal(item.gpa, 0, 'COMMA', 2,'POINT')}]]</td>
+			<td>
+				<span th:if="${item.gpa >= 9}">Excellent</span>
+				<span th:if="${item.gpa >= 8 and item.gpa < 9}">Good</span>
+				<span th:unless="${item.gpa >= 8}">Passed</span>
+			</td>
+			
+		</tr>
+	</table>
+</body>
+</html>
