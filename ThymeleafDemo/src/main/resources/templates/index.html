@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+<head xlmns="http://www.thymeleaf.org">
+	<meta charset="UTF-8" />
+	<title>Document</title>
+</head>
+<body>
+	<header>
+		<img th:src="@{/images/hinh-anh-doremon-xin-chao.jpg}" alt="" width="200" height="200" />
+	</header>
+
+	<nav>
+		<div th:replace="@{/layouts/menu.html}"></div>
+	</nav>
+	<section>
+		<div th:text="${message}">Message: </div>
+		<div th:object="${student}">
+			<p>StudentId: <span th:text="*{studentId}"></span></p>
+			<p>Name: <span th:text="*{name}"></span></p>
+		</div>
+	</section>
+</body>
+</html>
