@@ -36,7 +36,8 @@ public class DemoLambdaExpression {
                 new CartItem(4, "D", 1, 1231)));
 
         listItem.forEach(
-                item -> System.out.println("ID: " + item.getProductId() + " - Name: " + item.getProductName()));
+                item -> System.out.println("ID: " + item.getProductId() + " - Name: " +
+                        item.getProductName()));
 
         // Map with Lambda Expression
         Map<String, CartItem> map = new HashMap<>();
@@ -47,11 +48,13 @@ public class DemoLambdaExpression {
             String key = entry.getKey();
             CartItem value = entry.getValue();
 
-            System.out.println(String.format("%s - %s - %s", key, value.getProductId(), value.getProductName()));
+            System.out.println(String.format("%s - %s - %s", key, value.getProductId(),
+                    value.getProductName()));
         }
 
         map.forEach((key, value) -> System.out
-                .println(String.format("%s - %s - %s", key, value.getProductId(), value.getProductName())));
+                .println(String.format("%s - %s - %s", key, value.getProductId(),
+                        value.getProductName())));
 
         // Comparator
         listItem.sort(new Comparator<CartItem>() {

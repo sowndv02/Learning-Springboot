@@ -58,17 +58,12 @@
 			<artifactId>spring-boot-starter-validation</artifactId>
 		</dependency>
 
-		<!-- Khai báo sử dụng jpa -->
+		
+
+		<!-- Khai báo sử dụng thymeleaf -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-data-jpa</artifactId>
-		</dependency>
-
-		<!-- Khai báo kết nối sql server -->
-		<dependency>
-			<groupId>com.microsoft.sqlserver</groupId>
-			<artifactId>mssql-jdbc</artifactId>
-			<scope>runtime</scope>
+			<artifactId>spring-boot-starter-thymeleaf</artifactId>
 		</dependency>
 
 	</dependencies>
