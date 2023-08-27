@@ -3,6 +3,7 @@ package sowndv02.learning.sample.controllers;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import sowndv02.learning.sample.model.Student;
 
@@ -21,4 +22,19 @@ public class HelloController {
 		model.addAttribute("student", student);
 		return "index";
 	}
+	
+	@GetMapping("order/{orderId}/detail/{detailId}")
+	public String detail(ModelMap model,@PathVariable int orderId,@PathVariable int detailId) {
+		
+		model.addAttribute("orderId", orderId);
+		model.addAttribute("detailId", detailId);
+		
+		return "detail";
+	}
+	
+	@GetMapping("fragment")
+	public String fragment() {
+		return "useFragments";
+	}
+	
 }
