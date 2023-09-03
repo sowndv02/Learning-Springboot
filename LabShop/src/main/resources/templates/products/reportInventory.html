@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en" xlmns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8" />
+	<title>Document</title>
+</head>
+<body>
+
+	<h1>Report of Inventory</h1>
+	<hr />
+	<a th:href="@{/products/newOrEdit}">New product</a>
+	<hr />
+	<div th:if="#{message!=null}">
+		<h3 th:text="${message}"></h3>
+	</div>
+
+	<hr />
+
+	<table>
+		<tr>
+			<td>Category</td>
+			<td>Price Sum</td>
+			<td>Quantity Sum</td>
+		</tr>
+		<tr th:each="item : ${pages.content}">
+			<td th:text="${item.category.name}"></td>
+			<td th:text="${item.priceSum}"></td>
+			<td th:text="${item.quantityCount}"></td>
+		</tr>
+	</table>
+	<hr />
+	<div>
+	Pages: 
+	<span th:each="i: ${#numbers.sequence(0, pages.totalPages -1)}">
+		<a th:href="@{/products/reportInventory(page=${i}, size=${pages.size}, sort=${sort})}" th:text="${i+1}"></a>
+	</span>
+	</div>
+
+</body>
+</html>

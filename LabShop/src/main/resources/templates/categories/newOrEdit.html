@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en" xlmns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8" />
+	<title>Document</title>
+</head>
+<body>
+
+	<h1>New or Edit Category</h1>
+	<hr />
+	<form th:action="@{/categories/saveOrUpdate}" method="post" th:object="${category}">
+		CategoryId:
+		<input readonly type="text" placeholder="Input categoryId" th:field="*{id}" /><br />
+		
+		
+		<br />
+		Name:
+		<input type="text" placeholder="Input Category name" th:field="*{name}" /><br />
+		<p th:if="${#fields.hasErrors('name')}" th:errors="*{name}"
+		th:class="${#fields.hasErrors('name')}? error"></p>
+		
+		<input type="submit" value="Save" />
+
+		<ul>
+			<li th:each="error : ${#fields.allErrors()}" th:text="${error}"></li>
+		</ul>
+	</form>	
+
+</body>
+</html>

@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en" xlmns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8" />
+	<title>Document</title>
+</head>
+<body>
+
+	<h1 th:if="${product.id != null}">Edit product</h1>
+	<h1 th:if="${product.id == null}">New product</h1>
+	<hr />
+	<a th:href="@{/products}">List of products</a>
+	<hr />
+	<form th:action="@{/products/saveOrUpdate}" method="post" th:object="${product}">
+		<div th:if="${product.id != null}">
+			ProductID: 
+			<input readonly type="text" placeholder="Input productId" th:field="*{id}"/><br />
+		</div>
+		
+		Category:
+		<select th:field="*{category.id}">
+			<option th:each="item : ${categories}" th:value=${item.id} th:text="${item.name}"></option>
+		</select>
+		
+		<br />
+		Name:
+		<input type="text" placeholder="Input name" th:field="*{name}" /><br />
+		<p th:if="${#fields.hasErrors('name')}" th:errors="*{name}"
+		th:class="${#fields.hasErrors('name')}? error"></p>
+		
+		Price: 
+		<input type="number" th:field="*{price}" placeholder="Input price" /><br />
+		<p th:if="${#fields.hasErrors('price')}" th:errors="*{price}"
+		th:class="${#fields.hasErrors('price')}? error"></p>
+
+		Quantity: 
+		<input type="number" th:field="*{quantity}" placeholder="Input quantity" /><br />
+		<p th:if="${#fields.hasErrors('quantity')}" th:errors="*{quantity}"
+		th:class="${#fields.hasErrors('quantity')}? error"></p>
+
+		Discount: 
+		<input type="number" th:field="*{discount}" placeholder="Input discount" /><br />
+		<p th:if="${#fields.hasErrors('discount')}" th:errors="*{discount}"
+		th:class="${#fields.hasErrors('discount')}? error"></p>
+
+		Status:
+		<select th:field="*{status}">
+			<option th:each="state : ${T(sowndv02.learning.shop.model.ProductStatus).values()}"
+			th:value="${state}" th:text="${state}"></option>
+		
+		</select><br />
+
+		
+		<input th:if="${product.id == null}" type="submit" value="Save" />
+		<input th:if="${product.id != null}" type="submit" value="Update" />
+
+		<ul>
+			<li th:each="error : ${#fields.allErrors()}" th:text="${error}"></li>
+		</ul>
+	</form>	
+
+</body>
+</html>
